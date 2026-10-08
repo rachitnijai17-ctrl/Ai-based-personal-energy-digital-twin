@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reports - Smart Energy System</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <div class="sidebar">
+    <div class="sidebar-logo">
+      <div class="logo-icon">⚡</div>
+      <div class="logo-text"><span>Smart Energy</span><span>Monitoring System</span></div>
+    </div>
+    <nav class="sidebar-nav">
+      <div class="nav-section-label">Main</div>
+      <div class="nav-item" data-href="dashboard.html"><span class="nav-icon">🏠</span>Dashboard</div>
+      <div class="nav-item" data-href="buildings.html"><span class="nav-icon">🏢</span>Buildings</div>
+      <div class="nav-item" data-href="rooms.html"><span class="nav-icon">🚪</span>Rooms</div>
+      <div class="nav-item" data-href="appliances.html"><span class="nav-icon">🔌</span>Appliances</div>
+      <div class="nav-item" data-href="monitoring.html"><span class="nav-icon">📈</span>Energy Monitoring</div>
+      <div class="nav-item" data-href="analytics.html"><span class="nav-icon">📊</span>Analytics</div>
+      <div class="nav-section-label">Analysis</div>
+      <div class="nav-item" data-href="health.html"><span class="nav-icon">❤️</span>Appliance Health</div>
+      <div class="nav-item" data-href="anomalies.html"><span class="nav-icon">⚠️</span>Anomaly Detection</div>
+      <div class="nav-item" data-href="predictions.html"><span class="nav-icon">🔮</span>Predictions</div>
+      <div class="nav-item" data-href="recommendations.html"><span class="nav-icon">💡</span>Recommendations</div>
+      <div class="nav-item" data-href="budget.html"><span class="nav-icon">💰</span>Budget</div>
+      <div class="nav-item" data-href="simulation.html"><span class="nav-icon">🧪</span>What-If Simulation</div>
+      <div class="nav-item active" data-href="reports.html"><span class="nav-icon">📄</span>Reports</div>
+      <div class="nav-section-label">System</div>
+      <div class="nav-item" data-href="settings.html"><span class="nav-icon">⚙️</span>Settings</div>
+      <div class="nav-item" data-href="logout"><span class="nav-icon">🚪</span>Logout</div>
+    </nav>
+  </div>
+  <button id="sidebarToggle" class="sidebar-toggle">☰</button>
+  <div class="main-content">
+    <header class="top-header">
+      <div class="header-left">
+        <div class="page-title"><h1>Reports</h1><p>Energy consumption reports and summaries</p></div>
+      </div>
+      <div class="header-right">
+        <div class="header-date"><span id="currentDay"></span><span id="currentDate"></span></div>
+        <div class="weather-badge"><span class="weather-temp" id="weatherTemp"></span><span class="weather-loc" id="weatherLoc"></span></div>
+        <div class="notif-btn"><span class="notif-dot"></span>🔔</div>
+        <div class="admin-badge"><div class="admin-avatar">A</div><div class="admin-name">Admin</div></div>
+      </div>
+    </header>
+    <section class="page-body">
+      <div class="page-header"><h2>Reports</h2><p>Daily, weekly and monthly energy reports</p></div>
+
+      <!-- Report Tabs -->
+      <div class="tab-bar">
+        <button class="tab-btn active" onclick="switchTab('daily')">Daily</button>
+        <button class="tab-btn" onclick="switchTab('weekly')">Weekly</button>
+        <button class="tab-btn" onclick="switchTab('monthly')">Monthly</button>
+      </div>
+
+      <!-- Stats Grid -->
+      <div class="report-stats-grid" style="margin-bottom:20px;">
+        <div class="report-stat">
+          <div class="report-stat-label">Today's Consumption</div>
+          <div class="report-stat-value text-blue" id="rTotalKwh">-- kWh</div>
+        </div>
+        <div class="report-stat">
+          <div class="report-stat-label">Monthly Consumption</div>
+          <div class="report-stat-value text-purple" id="rMonthlyKwh">-- kWh</div>
+        </div>
+        <div class="report-stat">
+          <div class="report-stat-label">Today's Cost</div>
+          <div class="report-stat-value text-green" id="rDailyBill">₹--</div>
+        </div>
+        <div class="report-stat">
+          <div class="report-stat-label">Monthly Bill</div>
+          <div class="report-stat-value text-yellow" id="rMonthlyBill">₹--</div>
+        </div>
+      </div>
+
+      <!-- Monthly Consumption Chart -->
+      <div class="chart-card" style="margin-bottom:20px;">
+        <div class="card-header"><h3>📊 Monthly Consumption History</h3></div>
+        <canvas id="reportMonthlyChart" height="180"></canvas>
+      </div>
+
+      <!-- Top Consumers -->
+      <div class="section-grid-2">
+        <div class="card">
+          <div class="card-header"><h3>🏆 Top Consuming Appliances</h3></div>
+          <div style="overflow-x:auto;">
+            <table class="data-table">
+              <thead>
+                <tr><th>#</th><th>Appliance</th><th>Consumption</th><th>% Share</th><th>Cost (₹)</th></tr>
+              </thead>
+              <tbody id="topConsumerBody"></tbody>
+            </table>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header"><h3>💡 Savings Opportunities</h3></div>
+          <div class="rec-list">
+            <div class="rec-item">
+              <div class="rec-number">1</div>
+              <div class="rec-text">Reduce AC usage by 2 hrs/day — saves ~₹720/month</div>
+            </div>
+            <div class="rec-item">
+              <div class="rec-number">2</div>
+              <div class="rec-text">Set AC to 24°C instead of 20°C — saves ~15% energy</div>
+            </div>
+            <div class="rec-item">
+              <div class="rec-number">3</div>
+              <div class="rec-text">Turn off TV when not watching — saves ~₹240/month</div>
+            </div>
+            <div class="rec-item">
+              <div class="rec-number">4</div>
+              <div class="rec-text">Use natural ventilation when outdoor temp is below 28°C</div>
+            </div>
+            <div class="rec-item">
+              <div class="rec-number">5</div>
+              <div class="rec-text">Check for unknown devices causing unaccounted consumption</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Abnormal Appliances -->
+      <div class="card" style="margin-top:16px;">
+        <div class="card-header"><h3>⚠️ Appliances with Abnormal Consumption</h3></div>
+        <div id="abnormalList">
+          <div class="anomaly-item">
+            <div class="anomaly-icon">⚠️</div>
+            <div>
+              <div class="anomaly-title">AC — Unusual Consumption</div>
+              <div class="anomaly-desc">Running 8.5 hours vs expected 6 hours. Consumption is 41.7% above expected.</div>
+              <div class="anomaly-meta">Status: Monitor | Deviation: 41.7%</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script src="script.js"></script>
+  <script>
+    // Simple tab switcher for reports
+    function switchTab(tab) {
+      var btns = document.querySelectorAll('.tab-btn');
+      btns.forEach(function(b) { b.classList.remove('active'); });
+      event.target.classList.add('active');
+    }
+  </script>
+</body>
+</html>

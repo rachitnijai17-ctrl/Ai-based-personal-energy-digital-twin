@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rooms - Smart Energy System</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="sidebar">
+    <div class="sidebar-logo">
+      <div class="logo-icon">⚡</div>
+      <div class="logo-text"><span>Smart Energy</span><span>Monitoring System</span></div>
+    </div>
+    <nav class="sidebar-nav">
+      <div class="nav-section-label">Main</div>
+      <div class="nav-item" data-href="dashboard.html"><span class="nav-icon">🏠</span>Dashboard</div>
+      <div class="nav-item" data-href="buildings.html"><span class="nav-icon">🏢</span>Buildings</div>
+      <div class="nav-item active" data-href="rooms.html"><span class="nav-icon">🚪</span>Rooms</div>
+      <div class="nav-item" data-href="appliances.html"><span class="nav-icon">🔌</span>Appliances</div>
+      <div class="nav-item" data-href="monitoring.html"><span class="nav-icon">📈</span>Energy Monitoring</div>
+      <div class="nav-item" data-href="analytics.html"><span class="nav-icon">📊</span>Analytics</div>
+      <div class="nav-section-label">Analysis</div>
+      <div class="nav-item" data-href="health.html"><span class="nav-icon">❤️</span>Appliance Health</div>
+      <div class="nav-item" data-href="anomalies.html"><span class="nav-icon">⚠️</span>Anomaly Detection</div>
+      <div class="nav-item" data-href="predictions.html"><span class="nav-icon">🔮</span>Predictions</div>
+      <div class="nav-item" data-href="recommendations.html"><span class="nav-icon">💡</span>Recommendations</div>
+      <div class="nav-item" data-href="budget.html"><span class="nav-icon">💰</span>Budget</div>
+      <div class="nav-item" data-href="simulation.html"><span class="nav-icon">🧪</span>What-If Simulation</div>
+      <div class="nav-item" data-href="reports.html"><span class="nav-icon">📄</span>Reports</div>
+      <div class="nav-section-label">System</div>
+      <div class="nav-item" data-href="settings.html"><span class="nav-icon">⚙️</span>Settings</div>
+      <div class="nav-item" data-href="logout"><span class="nav-icon">🚪</span>Logout</div>
+    </nav>
+  </div>
+  <button id="sidebarToggle" class="sidebar-toggle">☰</button>
+  <div class="main-content">
+    <header class="top-header">
+      <div class="header-left">
+        <div class="page-title"><h1>Rooms</h1><p>Manage rooms and their energy usage</p></div>
+      </div>
+      <div class="header-right">
+        <div class="header-date"><span id="currentDay"></span><span id="currentDate"></span></div>
+        <div class="weather-badge"><span class="weather-temp" id="weatherTemp"></span><span class="weather-loc" id="weatherLoc"></span></div>
+        <div class="notif-btn"><span class="notif-dot"></span>🔔</div>
+        <div class="admin-badge"><div class="admin-avatar">A</div><div class="admin-name">Admin</div></div>
+      </div>
+    </header>
+    <section class="page-body">
+      <div class="page-header"><h2>Rooms</h2><p>Room-wise energy consumption overview</p></div>
+
+      <!-- Room Cards -->
+      <div class="appliance-grid" style="margin-bottom:20px;">
+        <div class="appliance-card">
+          <div class="appliance-card-header">
+            <div style="display:flex;align-items:center;gap:10px;">
+              <div class="appliance-icon-wrap">🛋️</div>
+              <div><div class="appliance-name">Living Room</div><div class="appliance-room">Main Building</div></div>
+            </div>
+            <span class="health-badge fault">High</span>
+          </div>
+          <div class="appliance-stats">
+            <div class="appliance-stat"><div class="appliance-stat-label">Appliances</div><div class="appliance-stat-value">2</div></div>
+            <div class="appliance-stat"><div class="appliance-stat-label">Consumption</div><div class="appliance-stat-value">14.6 kWh</div></div>
+          </div>
+        </div>
+        <div class="appliance-card">
+          <div class="appliance-card-header">
+            <div style="display:flex;align-items:center;gap:10px;">
+              <div class="appliance-icon-wrap">🛏️</div>
+              <div><div class="appliance-name">Bedroom</div><div class="appliance-room">Main Building</div></div>
+            </div>
+            <span class="health-badge good">Normal</span>
+          </div>
+          <div class="appliance-stats">
+            <div class="appliance-stat"><div class="appliance-stat-label">Appliances</div><div class="appliance-stat-value">1</div></div>
+            <div class="appliance-stat"><div class="appliance-stat-label">Consumption</div><div class="appliance-stat-value">0.56 kWh</div></div>
+          </div>
+        </div>
+        <div class="appliance-card">
+          <div class="appliance-card-header">
+            <div style="display:flex;align-items:center;gap:10px;">
+              <div class="appliance-icon-wrap">🍳</div>
+              <div><div class="appliance-name">Kitchen</div><div class="appliance-room">Main Building</div></div>
+            </div>
+            <span class="health-badge good">Normal</span>
+          </div>
+          <div class="appliance-stats">
+            <div class="appliance-stat"><div class="appliance-stat-label">Appliances</div><div class="appliance-stat-value">1</div></div>
+            <div class="appliance-stat"><div class="appliance-stat-label">Consumption</div><div class="appliance-stat-value">4.8 kWh</div></div>
+          </div>
+        </div>
+        <div class="appliance-card">
+          <div class="appliance-card-header">
+            <div style="display:flex;align-items:center;gap:10px;">
+              <div class="appliance-icon-wrap">📚</div>
+              <div><div class="appliance-name">Study Room</div><div class="appliance-room">Main Building</div></div>
+            </div>
+            <span class="health-badge good">Normal</span>
+          </div>
+          <div class="appliance-stats">
+            <div class="appliance-stat"><div class="appliance-stat-label">Appliances</div><div class="appliance-stat-value">2</div></div>
+            <div class="appliance-stat"><div class="appliance-stat-label">Consumption</div><div class="appliance-stat-value">1.45 kWh</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Rooms Table -->
+      <div class="card">
+        <div class="card-header"><h3>🚪 All Rooms</h3></div>
+        <div style="overflow-x:auto;">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Room Name</th>
+                <th>Building</th>
+                <th>Appliances</th>
+                <th>Consumption</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody id="roomTableBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>

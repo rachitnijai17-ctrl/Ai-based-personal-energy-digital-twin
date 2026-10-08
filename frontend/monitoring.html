@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Energy Monitoring - Smart Energy System</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <div class="sidebar">
+    <div class="sidebar-logo">
+      <div class="logo-icon">⚡</div>
+      <div class="logo-text"><span>Smart Energy</span><span>Monitoring System</span></div>
+    </div>
+    <nav class="sidebar-nav">
+      <div class="nav-section-label">Main</div>
+      <div class="nav-item" data-href="dashboard.html"><span class="nav-icon">🏠</span>Dashboard</div>
+      <div class="nav-item" data-href="buildings.html"><span class="nav-icon">🏢</span>Buildings</div>
+      <div class="nav-item" data-href="rooms.html"><span class="nav-icon">🚪</span>Rooms</div>
+      <div class="nav-item" data-href="appliances.html"><span class="nav-icon">🔌</span>Appliances</div>
+      <div class="nav-item active" data-href="monitoring.html"><span class="nav-icon">📈</span>Energy Monitoring</div>
+      <div class="nav-item" data-href="analytics.html"><span class="nav-icon">📊</span>Analytics</div>
+      <div class="nav-section-label">Analysis</div>
+      <div class="nav-item" data-href="health.html"><span class="nav-icon">❤️</span>Appliance Health</div>
+      <div class="nav-item" data-href="anomalies.html"><span class="nav-icon">⚠️</span>Anomaly Detection</div>
+      <div class="nav-item" data-href="predictions.html"><span class="nav-icon">🔮</span>Predictions</div>
+      <div class="nav-item" data-href="recommendations.html"><span class="nav-icon">💡</span>Recommendations</div>
+      <div class="nav-item" data-href="budget.html"><span class="nav-icon">💰</span>Budget</div>
+      <div class="nav-item" data-href="simulation.html"><span class="nav-icon">🧪</span>What-If Simulation</div>
+      <div class="nav-item" data-href="reports.html"><span class="nav-icon">📄</span>Reports</div>
+      <div class="nav-section-label">System</div>
+      <div class="nav-item" data-href="settings.html"><span class="nav-icon">⚙️</span>Settings</div>
+      <div class="nav-item" data-href="logout"><span class="nav-icon">🚪</span>Logout</div>
+    </nav>
+  </div>
+  <button id="sidebarToggle" class="sidebar-toggle">☰</button>
+  <div class="main-content">
+    <header class="top-header">
+      <div class="header-left">
+        <div class="page-title"><h1>Energy Monitoring</h1><p>Real-time energy tracking and appliance consumption</p></div>
+      </div>
+      <div class="header-right">
+        <div class="header-date"><span id="currentDay"></span><span id="currentDate"></span></div>
+        <div class="weather-badge"><span class="weather-temp" id="weatherTemp"></span><span class="weather-loc" id="weatherLoc"></span></div>
+        <div class="notif-btn"><span class="notif-dot"></span>🔔</div>
+        <div class="admin-badge"><div class="admin-avatar">A</div><div class="admin-name">Admin</div></div>
+      </div>
+    </header>
+    <section class="page-body">
+      <div class="page-header"><h2>Energy Monitoring</h2><p>Live and historical energy data</p></div>
+
+      <!-- Summary Metrics -->
+      <div class="section-grid-3" style="margin-bottom:20px;">
+        <div class="card" style="text-align:center;">
+          <div style="font-size:11px;color:var(--text-muted);margin-bottom:8px;">TODAY'S TOTAL</div>
+          <div style="font-size:26px;font-weight:800;color:var(--accent-blue);" id="monTotalKwh">-- kWh</div>
+        </div>
+        <div class="card" style="text-align:center;">
+          <div style="font-size:11px;color:var(--text-muted);margin-bottom:8px;">TODAY'S COST</div>
+          <div style="font-size:26px;font-weight:800;color:var(--accent-green);" id="monTotalCost">-- ₹</div>
+        </div>
+        <div class="card" style="text-align:center;">
+          <div style="font-size:11px;color:var(--text-muted);margin-bottom:8px;">CURRENT LOAD</div>
+          <div style="font-size:26px;font-weight:800;color:var(--accent-purple);" id="monCurrentLoad">-- kW</div>
+          <span class="status-badge success" style="font-size:10px;">● Live</span>
+        </div>
+      </div>
+
+      <!-- Hourly Chart -->
+      <div class="chart-card" style="margin-bottom:20px;">
+        <div class="card-header"><h3>📈 Hourly Consumption (Today)</h3></div>
+        <canvas id="hourlyChart" height="180"></canvas>
+      </div>
+
+      <!-- Current Appliance Consumption Table -->
+      <div class="card">
+        <div class="card-header"><h3>🔌 Live Appliance Consumption</h3></div>
+        <div style="overflow-x:auto;">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Appliance</th>
+                <th>Room</th>
+                <th>Power (kW)</th>
+                <th>Today (kWh)</th>
+                <th>Cost (₹)</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody id="monitorTableBody"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Unaccounted Consumption -->
+      <div class="card" style="margin-top:16px;">
+        <div class="card-header"><h3>❓ Unaccounted Consumption</h3></div>
+        <div class="section-grid-2">
+          <div>
+            <div style="display:flex;justify-content:space-between;margin-bottom:6px;">
+              <span style="font-size:13px;color:var(--text-secondary);">Meter Reading</span>
+              <span style="font-weight:700;">27.4 kWh</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;margin-bottom:6px;">
+              <span style="font-size:13px;color:var(--text-secondary);">Registered Appliances</span>
+              <span style="font-weight:700;" id="monAppTotal">-- kWh</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;margin-bottom:6px;padding-top:8px;border-top:1px solid var(--border-color);">
+              <span style="font-size:13px;color:var(--accent-red);font-weight:600;">Unaccounted</span>
+              <span style="font-weight:700;color:var(--accent-red);" id="monUnaccounted">-- kWh</span>
+            </div>
+          </div>
+          <div id="unaccountedNote" class="info-box">
+            Loading unaccounted consumption data...
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>

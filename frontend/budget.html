@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Budget - Smart Energy System</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <div class="sidebar">
+    <div class="sidebar-logo">
+      <div class="logo-icon">⚡</div>
+      <div class="logo-text"><span>Smart Energy</span><span>Monitoring System</span></div>
+    </div>
+    <nav class="sidebar-nav">
+      <div class="nav-section-label">Main</div>
+      <div class="nav-item" data-href="dashboard.html"><span class="nav-icon">🏠</span>Dashboard</div>
+      <div class="nav-item" data-href="buildings.html"><span class="nav-icon">🏢</span>Buildings</div>
+      <div class="nav-item" data-href="rooms.html"><span class="nav-icon">🚪</span>Rooms</div>
+      <div class="nav-item" data-href="appliances.html"><span class="nav-icon">🔌</span>Appliances</div>
+      <div class="nav-item" data-href="monitoring.html"><span class="nav-icon">📈</span>Energy Monitoring</div>
+      <div class="nav-item" data-href="analytics.html"><span class="nav-icon">📊</span>Analytics</div>
+      <div class="nav-section-label">Analysis</div>
+      <div class="nav-item" data-href="health.html"><span class="nav-icon">❤️</span>Appliance Health</div>
+      <div class="nav-item" data-href="anomalies.html"><span class="nav-icon">⚠️</span>Anomaly Detection</div>
+      <div class="nav-item" data-href="predictions.html"><span class="nav-icon">🔮</span>Predictions</div>
+      <div class="nav-item" data-href="recommendations.html"><span class="nav-icon">💡</span>Recommendations</div>
+      <div class="nav-item active" data-href="budget.html"><span class="nav-icon">💰</span>Budget</div>
+      <div class="nav-item" data-href="simulation.html"><span class="nav-icon">🧪</span>What-If Simulation</div>
+      <div class="nav-item" data-href="reports.html"><span class="nav-icon">📄</span>Reports</div>
+      <div class="nav-section-label">System</div>
+      <div class="nav-item" data-href="settings.html"><span class="nav-icon">⚙️</span>Settings</div>
+      <div class="nav-item" data-href="logout"><span class="nav-icon">🚪</span>Logout</div>
+    </nav>
+  </div>
+  <button id="sidebarToggle" class="sidebar-toggle">☰</button>
+  <div class="main-content">
+    <header class="top-header">
+      <div class="header-left">
+        <div class="page-title"><h1>Budget</h1><p>Track your monthly electricity budget</p></div>
+      </div>
+      <div class="header-right">
+        <div class="header-date"><span id="currentDay"></span><span id="currentDate"></span></div>
+        <div class="weather-badge"><span class="weather-temp" id="weatherTemp"></span><span class="weather-loc" id="weatherLoc"></span></div>
+        <div class="notif-btn"><span class="notif-dot"></span>🔔</div>
+        <div class="admin-badge"><div class="admin-avatar">A</div><div class="admin-name">Admin</div></div>
+      </div>
+    </header>
+    <section class="page-body">
+      <div class="page-header"><h2>Budget Tracker</h2><p>Monthly budget vs actual vs predicted</p></div>
+
+      <!-- Budget Summary Cards -->
+      <div class="report-stats-grid" style="margin-bottom:20px;">
+        <div class="report-stat">
+          <div class="report-stat-label">Monthly Budget</div>
+          <div class="report-stat-value text-blue" id="bBudget">₹--</div>
+        </div>
+        <div class="report-stat">
+          <div class="report-stat-label">Current Bill</div>
+          <div class="report-stat-value text-green" id="bCurrent">₹--</div>
+        </div>
+        <div class="report-stat">
+          <div class="report-stat-label">Remaining Budget</div>
+          <div class="report-stat-value" id="bRemaining">₹--</div>
+        </div>
+        <div class="report-stat">
+          <div class="report-stat-label">Predicted Final Bill</div>
+          <div class="report-stat-value text-yellow" id="bPredicted">₹--</div>
+        </div>
+      </div>
+
+      <!-- Budget Progress Bar -->
+      <div class="card" style="margin-bottom:20px;">
+        <div class="card-header">
+          <h3>📊 Budget Utilisation</h3>
+          <span id="bPct" style="font-size:13px;font-weight:700;color:var(--text-secondary);">0% used</span>
+        </div>
+        <div class="budget-progress-wrap">
+          <div class="budget-progress-fill green" id="bProgressBar" style="width:0%"></div>
+        </div>
+        <div id="bStatusMsg" class="info-box" style="margin-top:12px;">Calculating budget status...</div>
+      </div>
+
+      <!-- Budget Chart -->
+      <div class="section-grid-2">
+        <div class="chart-card">
+          <div class="card-header"><h3>💰 Budget vs Actual vs Predicted</h3></div>
+          <canvas id="budgetChart" height="220"></canvas>
+        </div>
+        <div class="card">
+          <div class="card-header"><h3>📋 Budget Breakdown</h3></div>
+          <div style="display:flex;flex-direction:column;gap:12px;margin-top:8px;">
+            <div>
+              <div style="display:flex;justify-content:space-between;margin-bottom:4px;">
+                <span style="font-size:12px;color:var(--text-secondary);">AC (Highest Consumer)</span>
+                <span style="font-size:12px;font-weight:700;">38%</span>
+              </div>
+              <div class="progress-wrap"><div class="progress-bar blue" style="width:38%"></div></div>
+            </div>
+            <div>
+              <div style="display:flex;justify-content:space-between;margin-bottom:4px;">
+                <span style="font-size:12px;color:var(--text-secondary);">Refrigerator</span>
+                <span style="font-size:12px;font-weight:700;">18%</span>
+              </div>
+              <div class="progress-wrap"><div class="progress-bar green" style="width:18%"></div></div>
+            </div>
+            <div>
+              <div style="display:flex;justify-content:space-between;margin-bottom:4px;">
+                <span style="font-size:12px;color:var(--text-secondary);">Fan</span>
+                <span style="font-size:12px;font-weight:700;">12%</span>
+              </div>
+              <div class="progress-wrap"><div class="progress-bar purple" style="width:12%"></div></div>
+            </div>
+            <div>
+              <div style="display:flex;justify-content:space-between;margin-bottom:4px;">
+                <span style="font-size:12px;color:var(--text-secondary);">Others (TV, Light, Computer)</span>
+                <span style="font-size:12px;font-weight:700;">32%</span>
+              </div>
+              <div class="progress-wrap"><div class="progress-bar yellow" style="width:32%"></div></div>
+            </div>
+            <div class="info-box" style="margin-top:8px;">
+              💡 Tip: Reducing AC usage by 2 hours/day could save approximately ₹720 per month.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>

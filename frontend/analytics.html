@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Analytics - Smart Energy Monitoring System</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+<div class="sidebar">
+  <div class="sidebar-logo">
+    <div class="logo-icon">⚡</div>
+    <div class="logo-text"><span>Smart Energy</span><span>Monitoring System</span></div>
+  </div>
+  <nav class="sidebar-nav">
+    <div class="nav-section-label">Main</div>
+    <div class="nav-item" data-href="dashboard.html"><span class="nav-icon">🏠</span>Dashboard</div>
+    <div class="nav-item" data-href="buildings.html"><span class="nav-icon">🏢</span>Buildings</div>
+    <div class="nav-item" data-href="rooms.html"><span class="nav-icon">🚪</span>Rooms</div>
+    <div class="nav-item" data-href="appliances.html"><span class="nav-icon">🔌</span>Appliances</div>
+    <div class="nav-item" data-href="monitoring.html"><span class="nav-icon">📈</span>Energy Monitoring</div>
+    <div class="nav-item" data-href="analytics.html"><span class="nav-icon">📊</span>Analytics</div>
+    <div class="nav-section-label">Analysis</div>
+    <div class="nav-item" data-href="health.html"><span class="nav-icon">❤️</span>Appliance Health</div>
+    <div class="nav-item" data-href="anomalies.html"><span class="nav-icon">⚠️</span>Anomaly Detection</div>
+    <div class="nav-item" data-href="predictions.html"><span class="nav-icon">🔮</span>Predictions</div>
+    <div class="nav-item" data-href="recommendations.html"><span class="nav-icon">💡</span>Recommendations</div>
+    <div class="nav-item" data-href="budget.html"><span class="nav-icon">💰</span>Budget</div>
+    <div class="nav-item" data-href="simulation.html"><span class="nav-icon">🧪</span>What-If Simulation</div>
+    <div class="nav-item" data-href="reports.html"><span class="nav-icon">📄</span>Reports</div>
+    <div class="nav-section-label">System</div>
+    <div class="nav-item" data-href="settings.html"><span class="nav-icon">⚙️</span>Settings</div>
+    <div class="nav-item" data-href="logout"><span class="nav-icon">🚪</span>Logout</div>
+  </nav>
+</div>
+<button id="sidebarToggle" class="sidebar-toggle">☰</button>
+<div class="main-content">
+  <header class="top-header">
+    <div class="header-left">
+      <div class="page-title"><h1>Analytics</h1><p>Energy usage analytics and trends</p></div>
+    </div>
+    <div class="header-right">
+      <div class="header-date"><span id="currentDate"></span><span id="currentDay"></span></div>
+      <div class="weather-badge"><span class="weather-temp" id="weatherTemp"></span><span class="weather-loc" id="weatherLoc"></span></div>
+      <div class="notif-btn"><span class="notif-dot"></span>🔔</div>
+      <div class="admin-badge"><div class="admin-avatar">A</div><div class="admin-name">Admin</div></div>
+    </div>
+  </header>
+  <section class="page-body">
+    <div class="page-header"><h2>Analytics</h2><p>Detailed consumption analytics and trends</p></div>
+    <div class="section-grid-2">
+      <div class="chart-card">
+        <div class="card-header"><h3>📊 Monthly Consumption</h3></div>
+        <canvas id="monthlyConsumptionChart" height="200"></canvas>
+      </div>
+      <div class="chart-card">
+        <div class="card-header"><h3>💰 Monthly Cost Trend</h3></div>
+        <canvas id="monthlyCostChart" height="200"></canvas>
+      </div>
+    </div>
+    <div class="section-grid-2">
+      <div class="chart-card">
+        <div class="card-header"><h3>🏠 Room-wise Consumption</h3></div>
+        <canvas id="roomChart" height="200"></canvas>
+      </div>
+      <div class="chart-card">
+        <div class="card-header"><h3>📅 Day of Week Pattern</h3></div>
+        <canvas id="weekPatternChart" height="200"></canvas>
+      </div>
+    </div>
+  </section>
+</div>
+<script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Recommendations - Smart Energy System</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="sidebar">
+    <div class="sidebar-logo">
+      <div class="logo-icon">⚡</div>
+      <div class="logo-text"><span>Smart Energy</span><span>Monitoring System</span></div>
+    </div>
+    <nav class="sidebar-nav">
+      <div class="nav-section-label">Main</div>
+      <div class="nav-item" data-href="dashboard.html"><span class="nav-icon">🏠</span>Dashboard</div>
+      <div class="nav-item" data-href="buildings.html"><span class="nav-icon">🏢</span>Buildings</div>
+      <div class="nav-item" data-href="rooms.html"><span class="nav-icon">🚪</span>Rooms</div>
+      <div class="nav-item" data-href="appliances.html"><span class="nav-icon">🔌</span>Appliances</div>
+      <div class="nav-item" data-href="monitoring.html"><span class="nav-icon">📈</span>Energy Monitoring</div>
+      <div class="nav-item" data-href="analytics.html"><span class="nav-icon">📊</span>Analytics</div>
+      <div class="nav-section-label">Analysis</div>
+      <div class="nav-item" data-href="health.html"><span class="nav-icon">❤️</span>Appliance Health</div>
+      <div class="nav-item" data-href="anomalies.html"><span class="nav-icon">⚠️</span>Anomaly Detection</div>
+      <div class="nav-item" data-href="predictions.html"><span class="nav-icon">🔮</span>Predictions</div>
+      <div class="nav-item active" data-href="recommendations.html"><span class="nav-icon">💡</span>Recommendations</div>
+      <div class="nav-item" data-href="budget.html"><span class="nav-icon">💰</span>Budget</div>
+      <div class="nav-item" data-href="simulation.html"><span class="nav-icon">🧪</span>What-If Simulation</div>
+      <div class="nav-item" data-href="reports.html"><span class="nav-icon">📄</span>Reports</div>
+      <div class="nav-section-label">System</div>
+      <div class="nav-item" data-href="settings.html"><span class="nav-icon">⚙️</span>Settings</div>
+      <div class="nav-item" data-href="logout"><span class="nav-icon">🚪</span>Logout</div>
+    </nav>
+  </div>
+  <button id="sidebarToggle" class="sidebar-toggle">☰</button>
+  <div class="main-content">
+    <header class="top-header">
+      <div class="header-left">
+        <div class="page-title"><h1>Recommendations</h1><p>Smart energy-saving recommendations</p></div>
+      </div>
+      <div class="header-right">
+        <div class="header-date"><span id="currentDay"></span><span id="currentDate"></span></div>
+        <div class="weather-badge"><span class="weather-temp" id="weatherTemp"></span><span class="weather-loc" id="weatherLoc"></span></div>
+        <div class="notif-btn"><span class="notif-dot"></span>🔔</div>
+        <div class="admin-badge"><div class="admin-avatar">A</div><div class="admin-name">Admin</div></div>
+      </div>
+    </header>
+    <section class="page-body">
+      <div class="page-header"><h2>Smart Recommendations</h2><p>Personalised tips to reduce energy consumption and cost</p></div>
+
+      <div class="section-grid-2">
+        <div class="card">
+          <div class="card-header"><h3>💡 Active Recommendations</h3></div>
+          <div class="rec-list" id="recList">
+            <!-- Filled by script.js -->
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header"><h3>📊 Potential Savings</h3></div>
+          <div style="display:flex;flex-direction:column;gap:16px;">
+            <div>
+              <div style="font-size:12px;color:var(--text-muted);margin-bottom:6px;">Reduce AC by 2 hrs/day</div>
+              <div style="font-size:22px;font-weight:800;color:var(--accent-green);">₹720/month</div>
+              <div class="progress-wrap"><div class="progress-bar green" style="width:70%"></div></div>
+            </div>
+            <div>
+              <div style="font-size:12px;color:var(--text-muted);margin-bottom:6px;">Reduce TV by 1 hr/day</div>
+              <div style="font-size:22px;font-weight:800;color:var(--accent-green);">₹240/month</div>
+              <div class="progress-wrap"><div class="progress-bar green" style="width:25%"></div></div>
+            </div>
+            <div>
+              <div style="font-size:12px;color:var(--text-muted);margin-bottom:6px;">Set AC to 25°C instead of 20°C</div>
+              <div style="font-size:22px;font-weight:800;color:var(--accent-green);">₹480/month</div>
+              <div class="progress-wrap"><div class="progress-bar green" style="width:50%"></div></div>
+            </div>
+            <div class="info-box success" style="margin-top:4px;">
+              Implementing all recommendations could save up to <strong>₹1,440/month</strong>.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- How it works -->
+      <div class="card" style="margin-top:16px;">
+        <div class="card-header"><h3>🔍 How Recommendations Work</h3></div>
+        <div class="info-box">
+          Recommendations are generated by comparing <strong>actual vs expected</strong> consumption for each appliance,
+          checking your <strong>budget utilisation</strong>, analysing <strong>unaccounted consumption</strong>,
+          and considering <strong>weather conditions</strong>. No machine learning — just simple rule-based logic
+          that is easy to understand and explain.
+        </div>
+      </div>
+    </section>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>

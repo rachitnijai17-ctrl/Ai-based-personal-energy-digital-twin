@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Predictions - Smart Energy System</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <div class="sidebar">
+    <div class="sidebar-logo">
+      <div class="logo-icon">⚡</div>
+      <div class="logo-text"><span>Smart Energy</span><span>Monitoring System</span></div>
+    </div>
+    <nav class="sidebar-nav">
+      <div class="nav-section-label">Main</div>
+      <div class="nav-item" data-href="dashboard.html"><span class="nav-icon">🏠</span>Dashboard</div>
+      <div class="nav-item" data-href="buildings.html"><span class="nav-icon">🏢</span>Buildings</div>
+      <div class="nav-item" data-href="rooms.html"><span class="nav-icon">🚪</span>Rooms</div>
+      <div class="nav-item" data-href="appliances.html"><span class="nav-icon">🔌</span>Appliances</div>
+      <div class="nav-item" data-href="monitoring.html"><span class="nav-icon">📈</span>Energy Monitoring</div>
+      <div class="nav-item" data-href="analytics.html"><span class="nav-icon">📊</span>Analytics</div>
+      <div class="nav-section-label">Analysis</div>
+      <div class="nav-item" data-href="health.html"><span class="nav-icon">❤️</span>Appliance Health</div>
+      <div class="nav-item" data-href="anomalies.html"><span class="nav-icon">⚠️</span>Anomaly Detection</div>
+      <div class="nav-item" data-href="predictions.html"><span class="nav-icon">🔮</span>Predictions</div>
+      <div class="nav-item" data-href="recommendations.html"><span class="nav-icon">💡</span>Recommendations</div>
+      <div class="nav-item" data-href="budget.html"><span class="nav-icon">💰</span>Budget</div>
+      <div class="nav-item" data-href="simulation.html"><span class="nav-icon">🧪</span>What-If Simulation</div>
+      <div class="nav-item" data-href="reports.html"><span class="nav-icon">📄</span>Reports</div>
+      <div class="nav-section-label">System</div>
+      <div class="nav-item" data-href="settings.html"><span class="nav-icon">⚙️</span>Settings</div>
+      <div class="nav-item" data-href="logout"><span class="nav-icon">🚪</span>Logout</div>
+    </nav>
+  </div>
+  <button id="sidebarToggle" class="sidebar-toggle">☰</button>
+  <div class="main-content">
+    <header class="top-header">
+      <div class="header-left">
+        <div class="page-title"><h1>Predictions</h1><p>Energy consumption predictions using moving average</p></div>
+      </div>
+      <div class="header-right">
+        <div class="header-date"><span id="currentDate"></span><span id="currentDay"></span></div>
+        <div class="weather-badge"><span class="weather-temp" id="weatherTemp"></span><span class="weather-loc" id="weatherLoc"></span></div>
+        <div class="notif-btn"><span class="notif-dot"></span>🔔</div>
+        <div class="admin-badge"><div class="admin-avatar">A</div><div class="admin-name">Admin</div></div>
+      </div>
+    </header>
+    <section class="page-body">
+      <div class="page-header"><h2>Predictions</h2><p>Next month prediction using Moving Average + Trend Adjustment</p></div>
+<div class="prediction-cards">
+  <div class="pred-card">
+    <div class="pred-card-label">Predicted Consumption</div>
+    <div class="pred-card-value" id="predKwh">-- kWh</div>
+    <div class="pred-card-unit">Next month estimate</div>
+  </div>
+  <div class="pred-card">
+    <div class="pred-card-label">Predicted Bill</div>
+    <div class="pred-card-value" id="predBill">₹--</div>
+    <div class="pred-card-unit">Based on current tariff</div>
+  </div>
+  <div class="pred-card">
+    <div class="pred-card-label">Confidence</div>
+    <div class="pred-card-value" id="predConfidence">--</div>
+    <div class="pred-card-unit" id="predChange"></div>
+  </div>
+</div>
+<div class="section-grid-2">
+  <div class="chart-card">
+    <div class="card-header"><h3>📊 Historical + Predicted Consumption</h3></div>
+    <canvas id="predHistChart" height="220"></canvas>
+  </div>
+  <div class="chart-card">
+    <div class="card-header"><h3>📈 Predicted vs Actual (This Week)</h3></div>
+    <canvas id="predVsActualChart" height="220"></canvas>
+  </div>
+</div>
+<div class="card mt-16">
+  <div class="card-header"><h3>📋 How Prediction Works</h3></div>
+  <div class="info-box">This system uses a <strong>Moving Average + Trend Adjustment</strong> method:<br>1. Average the last 3 months of consumption.<br>2. Calculate the trend (difference between last two months).<br>3. Predicted = Average + (Trend × 0.5).<br>4. Confidence is based on variation in the last 3 months.<br><br>This is a simple, explainable method — no machine learning involved.</div>
+</div>
+    </section>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>

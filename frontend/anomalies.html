@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Anomaly Detection - Smart Energy System</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <div class="sidebar">
+    <div class="sidebar-logo">
+      <div class="logo-icon">⚡</div>
+      <div class="logo-text"><span>Smart Energy</span><span>Monitoring System</span></div>
+    </div>
+    <nav class="sidebar-nav">
+      <div class="nav-section-label">Main</div>
+      <div class="nav-item" data-href="dashboard.html"><span class="nav-icon">🏠</span>Dashboard</div>
+      <div class="nav-item" data-href="buildings.html"><span class="nav-icon">🏢</span>Buildings</div>
+      <div class="nav-item" data-href="rooms.html"><span class="nav-icon">🚪</span>Rooms</div>
+      <div class="nav-item" data-href="appliances.html"><span class="nav-icon">🔌</span>Appliances</div>
+      <div class="nav-item" data-href="monitoring.html"><span class="nav-icon">📈</span>Energy Monitoring</div>
+      <div class="nav-item" data-href="analytics.html"><span class="nav-icon">📊</span>Analytics</div>
+      <div class="nav-section-label">Analysis</div>
+      <div class="nav-item" data-href="health.html"><span class="nav-icon">❤️</span>Appliance Health</div>
+      <div class="nav-item active" data-href="anomalies.html"><span class="nav-icon">⚠️</span>Anomaly Detection</div>
+      <div class="nav-item" data-href="predictions.html"><span class="nav-icon">🔮</span>Predictions</div>
+      <div class="nav-item" data-href="recommendations.html"><span class="nav-icon">💡</span>Recommendations</div>
+      <div class="nav-item" data-href="budget.html"><span class="nav-icon">💰</span>Budget</div>
+      <div class="nav-item" data-href="simulation.html"><span class="nav-icon">🧪</span>What-If Simulation</div>
+      <div class="nav-item" data-href="reports.html"><span class="nav-icon">📄</span>Reports</div>
+      <div class="nav-section-label">System</div>
+      <div class="nav-item" data-href="settings.html"><span class="nav-icon">⚙️</span>Settings</div>
+      <div class="nav-item" data-href="logout"><span class="nav-icon">🚪</span>Logout</div>
+    </nav>
+  </div>
+  <button id="sidebarToggle" class="sidebar-toggle">☰</button>
+  <div class="main-content">
+    <header class="top-header">
+      <div class="header-left">
+        <div class="page-title"><h1>Anomaly Detection</h1><p>Rule-based detection of unusual energy patterns</p></div>
+      </div>
+      <div class="header-right">
+        <div class="header-date"><span id="currentDay"></span><span id="currentDate"></span></div>
+        <div class="weather-badge"><span class="weather-temp" id="weatherTemp"></span><span class="weather-loc" id="weatherLoc"></span></div>
+        <div class="notif-btn"><span class="notif-dot"></span>🔔</div>
+        <div class="admin-badge"><div class="admin-avatar">A</div><div class="admin-name">Admin</div></div>
+      </div>
+    </header>
+    <section class="page-body">
+      <div class="page-header"><h2>Anomaly Detection</h2><p>Simple rule-based detection — no machine learning</p></div>
+
+      <!-- Detected Anomalies -->
+      <div class="card" style="margin-bottom:16px;">
+        <div class="card-header"><h3>🚨 Detected Anomalies</h3></div>
+        <div id="anomalyList">
+          <!-- Filled by script.js -->
+        </div>
+      </div>
+
+      <!-- Normal Range Reference -->
+      <div class="section-grid-2">
+        <div class="card">
+          <div class="card-header"><h3>📏 Normal Consumption Ranges</h3></div>
+          <table class="data-table">
+            <thead>
+              <tr><th>Appliance</th><th>Expected (kWh/day)</th><th>Anomaly Threshold</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>AC</td><td>9.0 kWh</td><td>&gt;10.8 kWh (&gt;20% over)</td></tr>
+              <tr><td>Refrigerator</td><td>4.8 kWh</td><td>&gt;5.8 kWh</td></tr>
+              <tr><td>Fan</td><td>0.6 kWh</td><td>&gt;0.72 kWh</td></tr>
+              <tr><td>LED Light</td><td>0.072 kWh</td><td>&gt;0.086 kWh</td></tr>
+              <tr><td>TV</td><td>0.4 kWh</td><td>&gt;0.48 kWh</td></tr>
+              <tr><td>Computer</td><td>1.5 kWh</td><td>&gt;1.8 kWh</td></tr>
+              <tr><td>Overall Daily</td><td>12–16 kWh</td><td>&gt;24 kWh</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="card">
+          <div class="card-header"><h3>📋 Detection Rules</h3></div>
+          <div class="info-box" style="margin-bottom:10px;">
+            <strong>Rule 1 — Appliance Spike:</strong> If actual consumption &gt; expected by &gt;20%, flag as danger anomaly.
+          </div>
+          <div class="info-box" style="margin-bottom:10px;">
+            <strong>Rule 2 — Moderate Deviation:</strong> If deviation is 10–20%, flag as warning.
+          </div>
+          <div class="info-box" style="margin-bottom:10px;">
+            <strong>Rule 3 — Daily Spike:</strong> If total daily consumption exceeds 1.5× the normal maximum (16 kWh), flag overall anomaly.
+          </div>
+          <div class="info-box">
+            <strong>No ML used.</strong> These simple rules are easy to explain in a viva. The algorithm runs entirely in JavaScript.
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
